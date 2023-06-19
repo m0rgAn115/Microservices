@@ -1,0 +1,28 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: servicio-productos
+        uri: lb://servicio-productos
+        predicates:
+          - Path=/api/productos/**
+        filters:
+          - StripPrefix=2
+          - Ejemplo=Hola mi mensaje personalizado, usuario, AngelMondragon
+          #Otra forma de poner nuestro fultro personalizado      
+          #- name: Ejemplo
+            #args:
+              #mensaje: Hola mi Mensaje Personalizado
+              #cookieNombre: usuario
+              #cookieValor: AngelMondragon
+      - id: servicio-items
+        uri: lb://servicio-items
+        predicates:
+          - Path=/api/items/**
+        filters:
+          - StripPrefix=2
+          - AddRequestHeader=token-request, 123456
+          - AddResponseHeader=token-response, 12345678
+          - SerResponseHeader=Content-Type, text/plain
+          - AddRequestParameter=nombre, Angel
+          

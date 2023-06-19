@@ -1,0 +1,2 @@
+Error: no se ha encontrado o cargado la clase principal com.formacionbdi.springboot.app.config.SpringbootServicioConfigServerApplication
+Causado por: java.lang.ClassNotFoundException: com.formacionbdi.springboot.app.config.SpringbootServicioConfigServerApplication

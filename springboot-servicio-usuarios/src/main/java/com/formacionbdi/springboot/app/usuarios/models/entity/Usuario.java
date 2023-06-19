@@ -1,0 +1,48 @@
+package com.formacionbdi.springboot.app.usuarios.models.entity;
+
+import java.io.Serializable;
+import java.util.List;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@Entity
+@Table(name = "usuarios")
+public class Usuario implements Serializable{
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	
+	@Column(unique = true,length = 20)
+	private String username;
+	
+	@Column(length = 60)
+	private String password;
+	
+	private Boolean enabled;
+	
+	private String nombre;
+	
+	private String apellido;
+	
+	@Column(unique = true)
+	private String email;
+	
+	@ManyToMany(fetch = FetchType.LAZY)
+	private List<Role> roles;
+	
+	private static final long serialVersionUID = 4002221912401133094L;
+	
+
+}

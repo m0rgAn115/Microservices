@@ -1,0 +1,23 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: servicio-productos
+        uri: lb://servicio-productos
+        predicates:
+          - Path=/api/productos/**
+        filters:
+          - StripPrefix=2
+          #Anadiendo nuestros filtros personalizados
+          - name: Ejemplo
+            args:
+              mensaje: Hola mi Mensaje Personalizado
+              cookieNombre: usuario
+              cookieValor: AngelMondragon
+      - id: servicio-items
+        uri: lb://servicio-items
+        predicates:
+          - Path=/api/items/**
+        filters:
+          - StripPrefix=2
+          
